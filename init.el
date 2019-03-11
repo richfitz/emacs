@@ -104,7 +104,10 @@
 ;; ido mode
 (ido-mode t)
 (setq ido-enable-flex-matching t
-      ido-use-virtual-buffers t)
+      ido-use-virtual-buffers t
+      ido-everywhere t
+      ido-auto-merge-work-directories-length -1)
+
 
 ;; (require 'powerline)
 ;; (powerline-default-theme)
