@@ -1,0 +1,8 @@
+elpa
+auto-save-list
+recentf
+ido.last
+tmp
+site-lisp/ess
+*.elc
+abbrev_defs

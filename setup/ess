@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+set -e
+
+## See https://stat.ethz.ch/ESS/downloads/ess/ for versions.
+VERSION=16.04
+
+if [ ! -f init.el ]; then
+    echo "run in emacs root"
+    exit 1
+fi
+
+EMACS_ROOT=$PWD
+URL="https://stat.ethz.ch/ESS/downloads/ess/ess-${VERSION}.tgz"
+
+mkdir -p "$EMACS_ROOT/tmp"
+
+DEST_TGZ=$EMACS_ROOT/tmp/ess.tgz
+DEST_SRC=$EMACS_ROOT/site-lisp/ess
+
+if [ ! -f "$DEST_TGZ" ]; then
+    curl -L "$URL" -o "$DEST_TGZ"
+fi
+
+rm -rf "$DEST_SRC"
+mkdir -p "$DEST_SRC"
+
+(cd "$DEST_SRC" && tar --strip-components=1 -zxf "$DEST_TGZ")
+sed -i.bak 's;EMACS=emacs;EMACS=/Applications/Emacs.app/Contents/MacOS/Emacs;' \
+    "$DEST_SRC/Makeconf"
+echo "all:"  > "$DEST_SRC/doc/Makefile"
+make -C "$DEST_SRC"
+
+rm -rf "$EMACS_ROOT/tmp"

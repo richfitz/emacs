@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+
+if [ ! -d "~/bin" ]; then
+    mkdir -p ~/bin
+fi
+
+if [[ true || ! -f "~/bin/emacs" ]]; then
+    echo "Writing emacs"
+    cat <<EOF > ~/bin/emacs
+#!/bin/sh
+/Applications/Emacs.app/Contents/MacOS/Emacs -nw "$@"
+EOF
+    chmod +x ~/bin/emacs
+fi
+
+if [[ true || ! -f "~/bin/emacsclient" ]]; then
+    echo "Writing emacsclient"
+    cat <<EOF > ~/bin/emacsclient
+#!/bin/sh
+which osascript > /dev/null 2>&1 && osascript -e 'tell application "Emacs" to activate'
+/Applications/Emacs.app/Contents/MacOS/bin/emacsclient -c "$@"
+EOF
+    chmod +x ~/bin/emacsclient
+fi
