@@ -1,8 +1,10 @@
 #!/usr/bin/env bash
 set -e
 
-## See https://stat.ethz.ch/ESS/downloads/ess/ for versions.
-VERSION=16.04
+## See https://stat.ethz.ch/ESS/downloads/ess/ for versions.  The rot
+## seems to have set in some time before 16.04
+## https://stat.ethz.ch/ESS/downloads/ess/OLD/ess-15.09-1.tgz
+VERSION="OLD/ess-15.09-1"
 
 if [ ! -f init.el ]; then
     echo "run in emacs root"
@@ -10,7 +12,7 @@ if [ ! -f init.el ]; then
 fi
 
 EMACS_ROOT=$PWD
-URL="https://stat.ethz.ch/ESS/downloads/ess/ess-${VERSION}.tgz"
+URL="https://stat.ethz.ch/ESS/downloads/ess/${VERSION}.tgz"
 
 mkdir -p "$EMACS_ROOT/tmp"
 

@@ -35,10 +35,10 @@
 
 (add-hook 'ess-mode-hook
 	  (lambda()
-	    (ess-toggle-underscore nil)
-	    (setq inferior-R-args "--no-restore-history --no-save")
 	    (setq ess-indent-with-fancy-comments nil)
-	    (setq ess-indent-level 2)))
+	    (setq ess-indent-level 2)
+	    (ess-toggle-underscore nil)))
+;; (ess-disable-smart-underscore t))
 
 (defconst richfitz/cc-style
   '("gnu"
@@ -107,6 +107,7 @@
 (setq ido-enable-flex-matching t
       ido-use-virtual-buffers t
       ido-everywhere t
+      ido-default-buffer-method 'selected-window
       ido-auto-merge-work-directories-length -1)
 
 
