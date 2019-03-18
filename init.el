@@ -6,6 +6,7 @@
 (require 'cl)
 (defvar richfitz/packages '(dockerfile-mode
 			    json-mode
+			    magit
 			    markdown-mode
                             org
                             powerline
@@ -139,7 +140,7 @@
  '(custom-enabled-themes (quote (tango)))
  '(package-selected-packages
    (quote
-    (dockerfile-mode smart-mode-line-powerline-theme smart-mode-line powerline writegood-mode yaml-mode "org" markdown-mode)))
+    (magit dockerfile-mode smart-mode-line-powerline-theme smart-mode-line powerline writegood-mode yaml-mode "org" markdown-mode)))
  '(sml/mode-width
    (if
        (eq
