@@ -33,10 +33,32 @@
 	(require 'ess-site))
     (message "%s" "Run ./setup/ess to configure ess")))
 
+
+;; all sorts of attempts to get ESS to stop with its *awful*
+;; underscore behaviour, though the correct way to avoid this changes
+;; with each version for reasons that are not clear.
+;;
+;; if it comes back, it's necessary to periodically vanquish it with
+;; (ess-disable-smart-underscore) interactively within a session, but
+;; that can't be done within the load hook for unknown reasons.
+;;
+;; Newer versions fix this but they break indenting in new and varied
+;; ways each time and I would rather not reindent every file with each
+;; upgrade.
+(setq ess-smart-S-assign nil)
+
+;;(eval-after-load 'ess-site
+;;  '(ess-toggle-underscore nil))
+;;(setq ess-smart-S-assign-key nil)
+;;(ess-toggle-S-assign nil)
+;;(ess-toggle-underscore nil) ;leave underscore key alone!
+
+(setq ess-smart-S-assign-key ";")
 (add-hook 'ess-mode-hook
 	  (lambda()
 	    (setq ess-indent-with-fancy-comments nil)
 	    (setq ess-indent-level 2)
+            ;; (ess-disable-smart-underscore)
 	    (ess-toggle-underscore nil)))
 ;; (ess-disable-smart-underscore t))
 
@@ -72,6 +94,7 @@
 ;; indenting
 (setq tab-width 2)
 (setq indent-tabs-mode nil)
+(setq-default indent-tabs-mode nil)
 
 ;; less leftover files
 (setq make-backup-files nil)
