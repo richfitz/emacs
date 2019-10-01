@@ -79,6 +79,7 @@
 
 ;; minimal decorations
 (tool-bar-mode -1)
+(menu-bar-mode -1)
 (scroll-bar-mode -1)
 
 ;; less on startup
