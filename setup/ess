@@ -27,8 +27,10 @@ rm -rf "$DEST_SRC"
 mkdir -p "$DEST_SRC"
 
 (cd "$DEST_SRC" && tar --strip-components=1 -zxf "$DEST_TGZ")
-sed -i.bak 's;EMACS=emacs;EMACS=/Applications/Emacs.app/Contents/MacOS/Emacs;' \
+if [ -f /Applications/Emacs.app/Contents/MacOS/Emacs ]; then
+  sed -i.bak 's;EMACS=emacs;EMACS=/Applications/Emacs.app/Contents/MacOS/Emacs;' \
     "$DEST_SRC/Makeconf"
+fi
 echo "all:"  > "$DEST_SRC/doc/Makefile"
 make -C "$DEST_SRC"
 
